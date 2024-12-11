@@ -1,41 +1,31 @@
+
 // Define quadrant plugin
 const quadrantPlugin = {
     id: 'quadrantPlugin',
     beforeDraw: (chart) => {
         const {ctx, chartArea: {top, bottom, left, right, width, height}} = chart;
 
-        // Calculate thresholds (20% and 80% on satiety scale)
-        const lowSatiety = left + (width * 0.2);  // 2.0 on satiety scale
-        const highSatiety = left + (width * 0.8); // 8.0 on satiety scale
+        // Calculate midpoints
+        const midX = left + (width * 0.5);  // 5.0 on satiety scale
         const midY = top + (height * (1 - 200/900)); // 200 calories threshold
 
         ctx.save();
 
-        // Above 200 calories
-        // Red (low satiety <20%)
-        ctx.fillStyle = 'rgba(255, 0, 0, 0.1)';
-        ctx.fillRect(left, top, lowSatiety - left, midY - top);
+        // Red quadrant (top-left) - High calories, Low satiety
+        ctx.fillStyle = 'rgba(255, 200, 200, 0.5)';
+        ctx.fillRect(left, top, midX - left, midY - top);
 
-        // Orange (medium satiety 20-80%)
-        ctx.fillStyle = 'rgba(255, 165, 0, 0.1)';
-        ctx.fillRect(lowSatiety, top, highSatiety - lowSatiety, midY - top);
+        // Orange quadrant (top-right) - High calories, High satiety
+        ctx.fillStyle = 'rgba(255, 230, 200, 0.5)';
+        ctx.fillRect(midX, top, right - midX, midY - top);
 
-        // Red (high satiety >80%)
-        ctx.fillStyle = 'rgba(255, 0, 0, 0.1)';
-        ctx.fillRect(highSatiety, top, right - highSatiety, midY - top);
+        // Green quadrant (bottom-right) - Low calories, High satiety
+        ctx.fillStyle = 'rgba(200, 255, 200, 0.5)';
+        ctx.fillRect(midX, midY, right - midX, bottom - midY);
 
-        // Below 200 calories
-        // Yellow (low satiety <20%)
-        ctx.fillStyle = 'rgba(255, 255, 0, 0.1)';
-        ctx.fillRect(left, midY, lowSatiety - left, bottom - midY);
-
-        // Green (medium satiety 20-80%)
-        ctx.fillStyle = 'rgba(0, 128, 0, 0.1)';
-        ctx.fillRect(lowSatiety, midY, highSatiety - lowSatiety, bottom - midY);
-
-        // Yellow (high satiety >80%)
-        ctx.fillStyle = 'rgba(255, 255, 0, 0.1)';
-        ctx.fillRect(highSatiety, midY, right - highSatiety, bottom - midY);
+        // Yellow quadrant (bottom-left) - Low calories, Low satiety
+        ctx.fillStyle = 'rgba(255, 255, 200, 0.5)';
+        ctx.fillRect(left, midY, midX - left, bottom - midY);
 
         ctx.restore();
     }
