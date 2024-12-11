@@ -52,7 +52,7 @@ const foods = [
     { name: "Müsli", calories: 354, satiety: 6.3 },  // SI = 126
     { name: "Hvide Ris", calories: 130, satiety: 4.8 },  // SI = 96
     { name: "Risengrød", calories: 134, satiety: 6.0 },  // SI estimeret
-
+    
     // Proteinrige fødevarer - Fisk
     { name: "Laks (grillet)", calories: 206, satiety: 8.2 },  // SI estimeret
     { name: "Torsk (kogt)", calories: 82, satiety: 8.7 },  // SI = 174
@@ -68,13 +68,7 @@ const foods = [
     { name: "Kikærter", calories: 164, satiety: 8.1 },  // SI = 162
     { name: "Tofu", calories: 76, satiety: 6.0 },  // SI estimeret
 
-    // Frugt
-    { name: "Appelsin", calories: 47, satiety: 7.6 },  // SI = 152
-    { name: "Æble", calories: 52, satiety: 7.4 },  // SI = 148
-    { name: "Banan", calories: 89, satiety: 6.5 },  // SI = 130
-    { name: "Vindruer", calories: 67, satiety: 4.9 },  // SI = 98
-    { name: "Jordbær", calories: 32, satiety: 6.2 },  // SI estimeret
-    { name: "Pære", calories: 57, satiety: 6.1 },  // SI estimeret
+    
 
     // Grøntsager
     { name: "Kogt Kartoffel", calories: 77, satiety: 8.4 },  // SI = 168
@@ -112,5 +106,40 @@ const foods = [
     // Sovser og dressinger
     { name: "Mayonnaise", calories: 687, satiety: 2.8 },  // SI = 56
     { name: "Ketchup", calories: 112, satiety: 2.2 },  // SI = 44
-    { name: "Sennep", calories: 80, satiety: 2.4 }  // SI = 48
+    { name: "Sennep", calories: 80, satiety: 2.4 },  // SI = 48
+    { name: "Chilimayo", calories: 702, satiety: 2.6 },  // SI estimeret
+    { name: "Bearnaisesauce", calories: 452, satiety: 3.0 },  // SI estimeret
+    { name: "Hollandaise", calories: 468, satiety: 3.0 },  // SI estimeret
+    { name: "Sød chilisauce", calories: 110, satiety: 2.5 },  // SI estimeret
+    { name: "Sojasauce", calories: 53, satiety: 1.5 },  // SI estimeret
+    { name: "BBQ-sauce", calories: 150, satiety: 2.3 },  // SI estimeret
+    { name: "Ranchdressing", calories: 320, satiety: 2.6 },  // SI estimeret
+    { name: "Caesardressing", calories: 481, satiety: 2.7 },  // SI estimeret
+    { name: "Thousand Island-dressing", calories: 390, satiety: 2.5 },  // SI estimeret
+    { name: "Tzatziki", calories: 60, satiety: 4.5 },  // SI estimeret
+    { name: "Guacamole", calories: 160, satiety: 5.0 },  // SI estimeret
+
+
+
+    // Pasta (forskellige typer)
+    { name: "Spaghetti (kogt)", calories: 158, satiety: 5.0 },  // SI = 100
+    { name: "Penne (kogt)", calories: 157, satiety: 5.1 },  // SI estimeret
+    { name: "Fettuccine (kogt)", calories: 160, satiety: 5.0 },  // SI estimeret
+    { name: "Ravioli (med ost)", calories: 220, satiety: 5.3 },  // SI estimeret
+    { name: "Lasagneplader (kogt)", calories: 152, satiety: 5.2 },  // SI estimeret
+    { name: "Fuldkornspasta (kogt)", calories: 149, satiety: 6.0 },  // SI estimeret
+    { name: "Glutenfri pasta (kogt)", calories: 170, satiety: 4.8 },  // SI estimeret
+
+    // Pastaretter
+    { name: "Spaghetti Bolognese", calories: 120, satiety: 6.0 },  // SI estimeret
+    { name: "Carbonara", calories: 165, satiety: 5.5 },  // SI estimeret
+    { name: "Pasta Alfredo", calories: 200, satiety: 5.3 },  // SI estimeret
+    { name: "Pasta med Pesto", calories: 180, satiety: 5.5 },  // SI estimeret
+    { name: "Lasagne", calories: 135, satiety: 6.5 },  // SI estimeret
+    { name: "Mac and Cheese", calories: 225, satiety: 4.5 },  // SI estimeret
+    { name: "Pasta Primavera", calories: 110, satiety: 6.0 },  // SI estimeret
+    { name: "Pasta med rejer og hvidløg", calories: 140, satiety: 6.2 },  // SI estimeret
+    { name: "Pasta Arrabiata", calories: 120, satiety: 5.7 },  // SI estimeret
+    { name: "Pasta med tun", calories: 150, satiety: 6.0 },  // SI estimeret
+    { name: "Vegetarlasagne", calories: 125, satiety: 6.7 },  // SI estimeret
 ];
