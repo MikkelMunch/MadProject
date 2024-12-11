@@ -4,34 +4,45 @@ const quadrantPlugin = {
     beforeDraw: (chart) => {
         const {ctx, chartArea: {top, bottom, left, right, width, height}} = chart;
 
-        // Calculate midpoints (threshold values)
-        const midX = left + (width * 0.5); // 5.0 on satiety scale
+        // Calculate thresholds (20% and 80% on satiety scale)
+        const lowSatiety = left + (width * 0.2);  // 2.0 on satiety scale
+        const highSatiety = left + (width * 0.8); // 8.0 on satiety scale
         const midY = top + (height * (1 - 200/900)); // 200 calories threshold
 
         ctx.save();
 
-        // Red quadrant (top-left) - High calories, Low satiety
+        // Above 200 calories
+        // Red (low satiety <20%)
         ctx.fillStyle = 'rgba(255, 0, 0, 0.1)';
-        ctx.fillRect(left, top, midX - left, midY - top);
+        ctx.fillRect(left, top, lowSatiety - left, midY - top);
 
-        // Orange quadrant (top-right) - High calories, High satiety
+        // Orange (medium satiety 20-80%)
         ctx.fillStyle = 'rgba(255, 165, 0, 0.1)';
-        ctx.fillRect(midX, top, right - midX, midY - top);
+        ctx.fillRect(lowSatiety, top, highSatiety - lowSatiety, midY - top);
 
-        // Green quadrant (bottom-right) - Low calories, High satiety
-        ctx.fillStyle = 'rgba(0, 128, 0, 0.1)';
-        ctx.fillRect(midX, midY, right - midX, bottom - midY);
+        // Red (high satiety >80%)
+        ctx.fillStyle = 'rgba(255, 0, 0, 0.1)';
+        ctx.fillRect(highSatiety, top, right - highSatiety, midY - top);
 
-        // Yellow quadrant (bottom-left) - Low calories, Low satiety
+        // Below 200 calories
+        // Yellow (low satiety <20%)
         ctx.fillStyle = 'rgba(255, 255, 0, 0.1)';
-        ctx.fillRect(left, midY, midX - left, bottom - midY);
+        ctx.fillRect(left, midY, lowSatiety - left, bottom - midY);
+
+        // Green (medium satiety 20-80%)
+        ctx.fillStyle = 'rgba(0, 128, 0, 0.1)';
+        ctx.fillRect(lowSatiety, midY, highSatiety - lowSatiety, bottom - midY);
+
+        // Yellow (high satiety >80%)
+        ctx.fillStyle = 'rgba(255, 255, 0, 0.1)';
+        ctx.fillRect(highSatiety, midY, right - highSatiety, bottom - midY);
 
         ctx.restore();
     }
 };
 
 // Setup Chart.js
-const ctx = document.getElementById('foodChart').getContext('2d');
+const ctx = document.getElementById('foodPlot').getContext('2d');
 
 const foodChart = new Chart(ctx, {
     type: 'scatter',
@@ -75,8 +86,20 @@ const foodChart = new Chart(ctx, {
                 },
                 min: 0,
                 max: 10,
+                ticks: {
+                    callback: function(value) {
+                        if (value === 2) return '20%';
+                        if (value === 8) return '80%';
+                        return value * 10 + '%';
+                    }
+                },
                 grid: {
-                    color: 'rgba(0, 0, 0, 0.1)'
+                    color: function(context) {
+                        if (context.tick.value === 2 || context.tick.value === 8) {
+                            return 'rgba(0, 0, 0, 0.2)';
+                        }
+                        return 'rgba(0, 0, 0, 0.1)';
+                    }
                 }
             },
             y: {
@@ -87,7 +110,12 @@ const foodChart = new Chart(ctx, {
                 min: 0,
                 max: 900,
                 grid: {
-                    color: 'rgba(0, 0, 0, 0.1)'
+                    color: function(context) {
+                        if (context.tick.value === 200) {
+                            return 'rgba(0, 0, 0, 0.2)';
+                        }
+                        return 'rgba(0, 0, 0, 0.1)';
+                    }
                 }
             }
         }
