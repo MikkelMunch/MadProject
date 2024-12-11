@@ -134,7 +134,7 @@
         <Content Include="Content\Site.css"/>
         <Content Include="js\chart.js" />
         <Content Include="js\foodData.js" />
-        <Content Include="Public\index.html" />
+        <Content Include="public\index.html" />
         <Content Include="Scripts\bootstrap.js"/>
         <Content Include="Scripts\bootstrap.min.js"/>
         <None Include="Scripts\jquery-3.3.1.intellisense.js"/>
